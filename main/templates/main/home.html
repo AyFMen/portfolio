@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Моё портфолио</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Моё портфолио</a>
+    </nav>
+
+    <div class="container mt-5">
+        <h1>Привет, я Егор!</h1>
+        <p class="lead">Начинающий Python/Django разработчик.</p>
+    </div>
+
+    <div class="container mt-5">
+        <h2>Мои проекты</h2>
+        <div class="row">
+            {% for project in projects %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ project.title }}</h5>
+                        <p class="card-text">{{ project.description }}</p>
+                        {% if project.link %}
+                            <a href="{{ project.link }}" class="btn btn-primary">Смотреть</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="container mt-5 mb-5">
+        <h2>Навыки</h2>
+        {% for skill in skills %}
+        <div class="mb-2">
+            <strong>{{ skill.name }}</strong>
+            <div class="progress">
+                <div class="progress-bar" style="width: {{ skill.level }}%">{{ skill.level }}%</div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="container mt-5 mb-5">
+        <h2>Связаться со мной</h2>
+        {% if success %}
+            <div class="alert alert-success">Сообщение отправлено!</div>
+        {% endif %}
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Отправить</button>
+        </form>
+    </div>
+    
+</body>
+</html>
