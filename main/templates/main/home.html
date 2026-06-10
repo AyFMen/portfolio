@@ -33,6 +33,9 @@
             margin-right: 8px;
             color: #0f3460;
         }
+        #scrollTop:hover {
+            background: #533483 !important;
+        }
     </style>
 </head>
 <body>
@@ -116,6 +119,25 @@
     <footer style="background: #1a1a2e; color: white; padding: 20px 0; text-align: center;">
         <p class="mb-0">© 2026 Егор | Python/Django разработчик</p>
     </footer>
+
+    <!-- Кнопка наверх -->
+    <button id="scrollTop" onclick="window.scrollTo({top:0, behavior:'smooth'})"
+        style="display:none; position:fixed; bottom:30px; right:30px;
+        background:#0f3460; color:white; border:none; border-radius:50%;
+        width:50px; height:50px; font-size:20px; cursor:pointer; z-index:999;">
+        ↑
+    </button>
+
+    <script>
+        window.onscroll = function() {
+            var btn = document.getElementById('scrollTop');
+            if (document.documentElement.scrollTop > 300) {
+                btn.style.display = 'block';
+            } else {
+                btn.style.display = 'none';
+            }
+        };
+    </script>
 
 </body>
 </html>
