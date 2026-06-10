@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Моё портфолио</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         @keyframes gradient {
             0% { background-position: 0% 50%; }
@@ -26,6 +27,11 @@
         }
         .card {
             transition: all 0.3s ease;
+        }
+        .skill-icon {
+            font-size: 1.2rem;
+            margin-right: 8px;
+            color: #0f3460;
         }
     </style>
 </head>
@@ -71,8 +77,23 @@
     <div class="container mt-5" id="skills">
         <h2>Навыки</h2>
         {% for skill in skills %}
-        <div class="mb-2">
-            <strong>{{ skill.name }}</strong>
+        <div class="mb-3">
+            <strong>
+                {% if skill.name == "Python" %}
+                    <i class="fab fa-python skill-icon"></i>
+                {% elif skill.name == "Django" %}
+                    <i class="fas fa-globe skill-icon"></i>
+                {% elif skill.name == "HTML/CSS" %}
+                    <i class="fab fa-html5 skill-icon"></i>
+                {% elif skill.name == "Git" %}
+                    <i class="fab fa-git-alt skill-icon"></i>
+                {% elif skill.name == "Bootstrap" %}
+                    <i class="fab fa-bootstrap skill-icon"></i>
+                {% else %}
+                    <i class="fas fa-code skill-icon"></i>
+                {% endif %}
+                {{ skill.name }}
+            </strong>
             <div class="progress">
                 <div class="progress-bar" style="width: {{ skill.level }}%">{{ skill.level }}%</div>
             </div>
